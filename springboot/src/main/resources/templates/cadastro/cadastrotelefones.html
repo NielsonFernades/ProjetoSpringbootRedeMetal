@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro Telefones</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.css" media="screen,projection" />
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.min.css" media="screen,projection" />
+
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/estilo.css" media="screen,projection" />
+
+</head>
+<body>
+	<nav>
+		<div id="teste" class="nav-wrapper teal darken-2">
+			<img class="responsive-img" src="/materialize/img/logomenu.png" style="height: 50px; width: 300px; margin-left: 20px; margin-top: 6px">
+				<a href="#!" class="brand-logo pulse"></a> 
+				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons right">menu</i></a>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="">Adicionar Clientes</a></li>
+				<li><a href="">Listar Clientes</a></li>
+				<li><a href="">Remover Clientes</a></li>
+				<li><a href="">Buscar Clientes</a></li>
+				<li><a href=""><i class="material-icons left">reply</i>Sair</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<ul class="sidenav" id="mobile-demo">
+		<li><a href="sass.html">Adicionar Clientes</a></li>
+		<li><a href="badges.html">Listar Clientes</a></li>
+		<li><a href="collapsible.html">Remover Clientes</a></li>
+		<li><a href="">Buscar Clientes</a></li>
+		<li><a href="mobile.html"><i class="material-icons right">reply</i></a></li>
+	</ul>
+
+<!--======================================== Título Telefones ========================================-->
+<hr>
+	<button class="btn waves-light z-depth-3 btn-large" type="submit" name="action" style="width: 100%; border-radius: 10px;">
+		<h5 style="font-family: sans-serif;">Cadastro de Telefones</h5>
+	</button>
+<hr>
+	<div align="center" style="margin-bottom: 10px;">
+		<a class="waves-effect waves-light btn pulse" style="border-radius: 10px;" href="/cadastropessoa">
+		<i class="material-icons right">reply</i><i class="material-icons left">reply</i>Voltar Para Tela Cadastro de Pessoas</a>
+	</div>
+<!--======================================== Fim Título Telefones ========================================-->
+	
+<!--======================================== Dados do Banco do Cliente ========================================-->
+	<!--  div th:each="p : ${pessoaobj}">
+		<div class="row">
+			<p>ID = <span th:text="${p.id}"></span></p>	
+			<p>NOME = <span th:text="${p.nome}"></span></p>	
+			<p>SOBRENOME = <span th:text="${p.sobrenome}"></span></p>	
+			<p>IDADE = <span th:text="${p.idade}"></span></p>		
+		</div>
+	</div>-->
+	
+<!--======================================== Msg ========================================-->
+			<div id="msg" th:each="m : ${msg}">
+				<span th:text="${m}"></span>
+			</div>
+<!--======================================== Fim Msg ========================================-->
+
+<!--======================================== Fomulário 1 ========================================-->
+
+<fieldset>
+<legend>Formulário Cadastro de Cliente</legend>
+<section style="background-color: rgb(204 204 204); border-radius: 10px; padding-bottom: 6px;">
+<div class="row">
+ 	<div class="col s12">
+		
+		<div class="col s6" style="border-radius: 10px;">
+			<form th:object="${pessoaobj}">
+
+				<div class="col s6">
+				<label class="active">ID:</label> 
+				<input name="id" th:field="*{id}" readonly="readonly" style="background-color:#FDFEFE; border-radius: 10px; text-indent: 15px;"> 
+				</div>
+				
+				<div class="col s6">
+				<label class="active">NOME:</label> 
+				<input name="nome" th:field="*{nome}" readonly="readonly" style="background-color:#FDFEFE; border-radius: 10px; text-indent: 15px;">
+				</div>
+				
+				<div class="col s6">
+				<label class="active">SOBRENOME:</label> 
+				<input name="sobrenome" th:field="*{sobrenome}" readonly="readonly" style="background-color:#FDFEFE; border-radius: 10px; text-indent: 15px;"> 
+				</div>
+				
+				<div class="col s6">	
+				<label class="active">IDADE:</label> 
+				<input type="number" name="idade" th:field="*{idade}" readonly="readonly" style="background-color:#FDFEFE; border-radius: 10px; text-indent: 15px;">
+				</div>
+			</form>		
+		</div>
+
+<!--======================================== Fimulário Form 1 ========================================-->
+
+
+<!--======================================== Formulário Telefones ========================================-->
+		<div class="col s6" style="border-radius: 10px;">
+				<form th:action="@{/addfonePessoa/{pessoaid}(pessoaid=${pessoaobj.id})}" method="post" onsubmit="return validarCampos? true : false">
+						
+						<div class="col s6">
+						<label for="numero" class="active">NÚMERO:</label> 
+						<input type="text" id="numero" name="numero" style="background-color:#FDFEFE; border-radius: 10px; color: #1e88e5;text-transform: uppercase; text-indent: 15px;" title="Adicione o número">
+						</div>
+					
+						<div class="col s6">
+						<label for="Tipo" class="active">TIPO:</label> 
+						<input type="text" id="tipo" name="tipo" style="background-color:#FDFEFE; border-radius: 10px; color: #1e88e5;text-transform: uppercase; text-indent: 15px;" title="Adicione o tipo"> 
+						</div>
+				
+				
+						<div class="col s12">
+							<button class="btn waves-effect waves-light z-depth-3" type="submit" name="action" style="width:100%; margin-top: 25px; border-radius: 10px;">
+								Adicionar Telefone <i class="material-icons right">person_add</i><i class="material-icons left">person_add</i>
+							</button>
+						</div>
+				</form>
+		</div>
+	</div>
+</div>
+</section>
+</fieldset>
+<!--======================================== Fim Formulário Telefones ========================================-->
+
+<!--======================================== Tabela Telefones ========================================-->
+<fieldset>
+<legend>Tabela de Telefones</legend>
+<div class="row">
+		<table class="striped">
+			<thead>
+				<tr>
+					<th>TELEFONE</th>
+					<th>TIPO</th>
+					<th>EDITAR</th>
+					<th>EXCLUIR</th>								
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="fone : ${telefones}">
+					<td th:text="${fone.numero}"></td>
+					<td th:text="${fone.tipo}"></td>
+					<td><a th:href="@{/editarfone/{idtelefone}(idtelefone=${fone.id})}">Editar</a></td> <!-- i class="material-icons right" title="Editar Telefone">edit</i>-->
+					<td><a th:href="@{/excluirfone/{idtelefone}(idtelefone=${fone.id})}">Excluir</a></td> <!-- <i class="material-icons right" title="Excluir Telefone">delete_forever</i> -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</fieldset>
+<!--======================================== Fim Tabela Telefones ========================================-->
+
+
+<!--======================================== Footer ========================================>
+	<footer class="page-footer teal darken-1">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text">Rede Metal</h5>
+					<p class="grey-text text-lighten-4">Nossa História.</p>
+				</div>
+				<div class="col l4 offset-l2 s12">
+					<h5 class="white-text">Links</h5>
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+						<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+						<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+						<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright teal darken-2">
+			<div class="container teal darken-1" style="border-radius: 10px;">
+				<h6 style="text-align: center; text-shadow: silver;">© 2020
+					Copyright Desenvolvido Por Nielson Fernandes</h6>
+			</div>
+			<a class="grey-text text-lighten-4 right" href="#" style="padding-right: 20px;"><i class="material-icons right">home</i></a>
+		</div>
+	</footer>
+<!--======================================== Fim Footer ========================================-->
+
+
+	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+	
+	<script type="text/javascript">
+		function validarCampos(){
+			numero = document.getElementById('numero').value;
+			tipo = document.getElementById('tipo').value;
+			
+			if (numero == ''){
+				alert('Preencha o campo "NÚMERO"!');
+				return false;			
+			} 
+			
+			else if (tipo == ''){
+				alert('Preencha o campo "TIPO"!');
+				return false;		
+			}
+		
+		return false;
+		}
+	</script>
+</body>
+</html>

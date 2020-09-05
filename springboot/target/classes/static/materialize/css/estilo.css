@@ -1,0 +1,39 @@
+.inicio{
+	margin: 12% 30% 40% 30%;	
+}
+fieldset {
+    padding: 0.35em 0.75em 0.625em;
+    border-radius: 10px;
+}
+
+legend {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    padding: 0;
+    white-space: normal;
+    text-transform: uppercase;
+    font-size: small;
+    cursor: pointer;
+}
+#indexborder{
+	background-color: olive;
+	border-radius: 10px;
+}
+
+#teste{
+	background: rgb(255,255,255);
+	background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 25%, rgba(0,121,107,1) 60%);
+}
+
+#msg{
+	text-align: center; 
+	justify-content:flex-start;
+	color: red;
+}
+
+table.striped>tbody>tr:nth-child(odd) {
+    background-color: rgb(204 204 204);
+}

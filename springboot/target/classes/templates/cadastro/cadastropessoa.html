@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro Clientes</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.css" media="screen,projection" />
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.min.css" media="screen,projection" />
+
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/estilo.css" media="screen,projection" />
+
+</head>
+<body>
+
+<!--======================================== Menu ========================================-->
+	<nav style="margin-top: 5px;">
+		<div id="teste" class="nav-wrapper teal darken-2">
+		<img class="responsive-img" src="/materialize/img/logomenu.png" style="height: 50px; width: 300px; margin-left: 20px; margin-top: 6px">
+			<a href="#!" class="brand-logo pulse"></a>
+			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons right">menu</i></a>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="">Adicionar Clientes</a></li>
+				<li><a href="">Listar Clientes</a></li>
+				<li><a href="">Remover Clientes</a></li>
+				<li><a href="">Buscar Clientes</a></li>
+				<li><a href=""><i class="material-icons left">reply</i>Sair</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<ul class="sidenav" id="mobile-demo">
+		<li><a href="sass.html">Adicionar Clientes</a></li>
+		<li><a href="badges.html">Listar Clientes</a></li>
+		<li><a href="collapsible.html">Remover Clientes</a></li>
+		<li><a href="">Buscar Clientes</a></li>
+		<li><a href="mobile.html"><i class="material-icons right">reply</i></a></li>
+	</ul>
+<!--======================================== Fim Menu ========================================-->
+
+
+<!--======================================== Botão Cadastro Clientes ========================================-->
+<hr>
+	<button class="btn waves-light z-depth-3 btn-large" type="submit" name="action" style="width: 100%; border-radius: 10px;">
+		<h5 style="font-family: sans-serif;">Cadastro de Clientes</h5>
+	</button>
+<hr>
+<!--======================================== Fim Botão Cadastro Clientes ========================================-->
+
+	<div> <!-- Div geral -->
+	
+<!--======================================== Msg ========================================-->
+			<div id="msg" th:each="m : ${msg}">
+				<span th:text="${m}"></span>
+			</div>
+<!--======================================== Fim Msg ========================================-->	
+		
+<!--======================================== Formulário ========================================-->
+<fieldset>
+<legend>Formulário Cadastro de Cliente</legend>
+	<div class="row" style="border-radius: 10px; margin-left: 200px; margin-right: 200px;" >
+ 		<div class="col s12">
+			<form action="salvarpessoa" method="post" th:object="${pessoaobj}">
+	
+				<div class="col s3">
+				<label>ID</label> 
+				<input name="id" th:field="*{id}" readonly="readonly" style="background-color: rgb(204 204 204); border-radius: 10px; text-indent: 15px;" > 
+				</div>	
+				
+				<div class="col s9">
+				<label for="nome"><!-- i class="material-icons prefix">account_circle</i-->NOME:</label> 
+				<input name="nome" th:field="*{nome}" style="background-color:#EAECEE; border-radius: 10px; color: #1e88e5; text-transform: uppercase; text-indent: 15px;" class="autocomplete" maxlength="15">
+				</div>
+				
+				<div class="col s9">
+				<label for="sobrenome" class="active">SOBRENOME:</label> 
+				<input name="sobrenome" th:field="*{sobrenome}" style="background-color:#EAECEE; border-radius: 10px; color: #1e88e5; text-transform: uppercase; text-indent: 15px;" class="autocomplete" maxlength="50"> 
+				</div>
+						
+				<div class="col s3">
+				<label for="idade" class="active">IDADE:</label> 
+				<input type="text" name="idade" th:field="*{idade}" style="background-color:#EAECEE; border-radius: 10px; color: #1e88e5; text-transform: uppercase; text-indent: 15px;" required="required">
+				</div>			
+				
+				<div class="col s12" align="center">
+					<button class="btn waves-effect waves-light z-depth-3" type="submit" name="action" style="width:100%; border-radius: 10px;">
+						Adicionar <i class="material-icons right">person_add</i><i class="material-icons left">person_add</i>
+					</button>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</fieldset>
+<!--======================================== Fim Formulário ========================================-->
+
+<!--======================================== Pesquisar ========================================-->
+
+<fieldset>
+<legend>Campo de Pesquisa</legend>
+<div style="margin-left: 106px; margin-right: 106px;">
+ 
+		<form action="pesquisarpessoa" method="post">
+			<label for="buscanome" class="active">BUSCA DE CLIENTES</label> 
+			<input name="buscanome" style="background-color: rgb(204 204 204); border-radius: 10px; color: #1e88e5; text-transform: uppercase; text-indent: 15px;" placeholder="ex: fulano" maxlength="30">
+
+			<button class="btn waves-effect waves-light z-depth-3" type="submit" value="Buscar" style="width:100%; border-radius: 10px;">
+				Buscar Cliente<i class="material-icons right">search</i><i class="material-icons left">search</i>
+			</button>
+		</form>
+	
+</div>
+</fieldset>
+<hr>
+<!--======================================== Fim Pesquisar ========================================-->
+
+
+<!--======================================== Busca ========================================-->
+		<div class="table" align="center">
+			<!-- a href="/listapessoas">Lista Pessoas</a> -->
+
+<!--======================================== Fim Busca ========================================-->
+				
+	<a class="waves-effect waves-light btn z-depth-3" style="width:100%; border-radius: 10px;"  href="/listapessoas">
+	<i class="material-icons right">list</i>
+	<i class="material-icons left">list</i>Tabela de Clientes</a>
+
+<!--======================================== Tabela ========================================-->	
+			<div class="row" style="margin-left: 20px; margin-right: 20px;">
+				<table class="striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>NOME</th>
+							<th>SOBRENOME</th>
+							<th>IDADE</th>
+							<th>EDITAR</th>
+							<th>EXCLUIR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="pessoa : ${pessoas.content}">
+							<td th:text="${pessoa.id}"></td>
+							<td><a th:href="@{/telefones/{pessoaid}(pessoaid=${pessoa.id})}" title="Clique e cadastre telefones para esse usuário"><span th:text="${pessoa.nome}"></span></a></td>
+							<td th:text="${pessoa.sobrenome}"></td>
+							<td th:text="${pessoa.idade}"></td>
+							<td><a th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Editar</a></td>
+							<td><a th:href="@{/excluirpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Excluir</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div> <!-- Fim Div geral -->
+<!--======================================== Fim Tabela ========================================-->
+
+<!--======================================== Rodapé ========================================-->
+	<footer class="page-footer teal darken-1">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12" align="center">
+					<img class="circle responsive-img" src="/materialize/img/imgefeito3.png" style="height: 70px; width: 70px">
+					<h5 class="white-text">Rede Metal</h5>
+					<p class="grey-text text-lighten-4">Nossa História.</p>
+				</div>
+				<div class="col l4 offset-l2 s12" align="center">
+					<h5 class="white-text">Redes Sociais</h5>
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="#!"><img class="circle responsive-img" src="/materialize/img/face.png" style="height: 20px; width: 20px"></a></li>
+						<li><a class="grey-text text-lighten-3" href="#!"><img class="circle responsive-img" src="/materialize/img/insta.png" style="height: 20px; width: 20px"></a></li>
+						<li><a class="grey-text text-lighten-3" href="#!"><img class="circle responsive-img" src="/materialize/img/link.png" style="height: 20px; width: 20px"></a></li>
+						<li><a class="grey-text text-lighten-3" href="#!"><img class="circle responsive-img" src="/materialize/img/whatsapp.png" style="height: 20px; width: 20px"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright teal darken-2">
+			<div class="container teal darken-1" style="border-radius: 10px;">
+				<h6 style="text-align: center; text-shadow: silver;">© 2020
+					Copyright Desenvolvido Por Nielson Fernandes</h6>
+			</div>
+			<a class="grey-text text-lighten-4 right" href="#" style="padding-right: 20px;"><i class="material-icons right">home</i></a>
+		</div>
+	</footer>
+<!--======================================== Fim Rodapé ========================================-->
+
+	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+</body>
+</html>
